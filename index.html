@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BT1 - Tóm tắt 5 bài học Thi HS2</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    linear-gradient(135deg,#e3e3aa 0%,#aadf7f 100%);
+
+    font-family:'Segoe UI',sans-serif;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+}
+
+/* =========================
+TITLE
+========================= */
+
+.main-title{
+
+    font-weight:900;
+
+    background:
+    linear-gradient(90deg,#ff0055,#7000ff);
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* =========================
+TREE BOX
+========================= */
+
+.tree-container-box{
+
+    background:#fff;
+
+    border:2px solid #67a1ed;
+
+    border-radius:30px;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.08);
+
+    padding:25px;
+}
+
+.tree-wrapper{
+
+    position:relative;
+
+    width:100%;
+    max-width:550px;
+
+    height:520px;
+
+    background-image:url('cay1.avif');
+
+    background-size:contain;
+
+    background-repeat:no-repeat;
+
+    background-position:center bottom;
+
+    margin:0 auto;
+
+    overflow:hidden;
+}
+
+/* =========================
+COMMON APPLE
+========================= */
+
+.fruit-item{
+
+    position:absolute;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    user-select:none;
+}
+
+/* =========================
+CLICKABLE APPLES
+========================= */
+
+.fruit-real{
+
+    width:42px;
+    height:42px;
+
+    cursor:pointer;
+
+    z-index:10;
+
+    transition:
+    top 1s cubic-bezier(.22,1.5,.36,1),
+    transform .4s ease;
+}
+
+.fruit-real img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+}
+
+/* HOVER */
+
+.fruit-real:hover{
+
+    transform:
+    scale(1.18)
+    rotate(8deg);
+}
+
+/* =========================
+APPLE COLORS
+========================= */
+
+.pos-b1 img{
+    filter:
+    drop-shadow(0 5px 12px rgb(255,70,70));
+}
+
+.pos-b2 img{
+    filter:
+    drop-shadow(0 5px 12px rgb(0,180,255));
+}
+
+.pos-b3 img{
+    filter:
+    drop-shadow(0 5px 12px rgb(255,170,0));
+}
+
+.pos-b4 img{
+    filter:
+    drop-shadow(0 5px 12px rgb(140,0,255));
+}
+
+.pos-b5 img{
+    filter:
+    drop-shadow(0 5px 12px rgb(255,0,180));
+}
+
+/* =========================
+FALL EFFECT
+========================= */
+
+.fruit-real.is-fallen{
+
+    top:85% !important;
+
+    animation:
+    appleFall 1s ease forwards,
+    appleBounce .45s ease .95s 2 alternate;
+}
+
+@keyframes appleFall{
+
+    0%{
+        transform:
+        translateY(0)
+        rotate(0deg);
+    }
+
+    60%{
+        transform:
+        translateY(12px)
+        rotate(18deg);
+    }
+
+    100%{
+        transform:
+        translateY(0)
+        rotate(28deg);
+
+        opacity:.85;
+    }
+
+}
+
+@keyframes appleBounce{
+
+    from{
+        transform:
+        translateY(0)
+        rotate(28deg);
+    }
+
+    to{
+        transform:
+        translateY(-12px)
+        rotate(20deg);
+    }
+
+}
+
+/* =========================
+DECOR APPLES
+========================= */
+
+.fruit-fake{
+
+    width:40px;
+    height:40px;
+
+    pointer-events:none;
+}
+
+.fruit-fake img{
+    width:100%;
+}
+
+/* =========================
+APPLE POSITIONS
+========================= */
+
+.pos-b1{
+    top:28%;
+    left:20%;
+}
+
+.pos-b2{
+    top:22%;
+    left:44%;
+}
+
+.pos-b3{
+    top:27%;
+    left:70%;
+}
+
+.pos-b4{
+    top:40%;
+    left:29%;
+}
+
+.pos-b5{
+    top:38%;
+    left:55%;
+}
+
+/* FAKE */
+
+.pos-a1 { top:17%; left:32%; }
+.pos-a2 { top:23%; left:56%; }
+.pos-a3 { top:20%; left:65%; }
+.pos-a4 { top:34%; left:13%; }
+.pos-a5 { top:32%; left:35%; }
+.pos-a6 { top:46%; left:43%; }
+.pos-a7 { top:46%; left:20%; }
+.pos-a8 { top:43%; left:71%; }
+
+/* =========================
+CARD
+========================= */
+
+.summary-card{
+
+    min-height:580px;
+    max-height:580px;
+
+    border-radius:25px;
+
+    border-left:10px solid #ff0055;
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,0.08);
+
+    transition:.4s;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:#fff;
+}
+
+/* =========================
+CONTENT
+========================= */
+
+.summary-content{
+
+    display:none;
+
+    animation:fade .45s ease;
+
+    height:500px;
+
+    overflow-y:auto;
+
+    padding-right:12px;
+
+    scroll-behavior:smooth;
+}
+
+/* SCROLL */
+
+.summary-content::-webkit-scrollbar{
+    width:10px;
+}
+
+.summary-content::-webkit-scrollbar-track{
+
+    background:#f2f2f2;
+
+    border-radius:20px;
+}
+
+.summary-content::-webkit-scrollbar-thumb{
+
+    background:
+    linear-gradient(
+    180deg,
+    #ff0055,
+    #7000ff);
+
+    border-radius:20px;
+}
+
+.summary-content::-webkit-scrollbar-thumb:hover{
+
+    background:
+    linear-gradient(
+    180deg,
+    #ff336f,
+    #8d38ff);
+}
+
+/* =========================
+ANIMATION
+========================= */
+
+@keyframes fade{
+
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* =========================
+TEXT
+========================= */
+
+.lesson-title{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    margin-top:18px;
+    margin-bottom:14px;
+
+    color:#222;
+}
+
+.lesson-sub{
+
+    font-size:15px;
+
+    color:#777;
+
+    margin-bottom:22px;
+}
+
+ul{
+    padding-left:22px;
+}
+
+li{
+
+    margin-bottom:18px;
+
+    line-height:1.9;
+
+    color:#555;
+
+    font-size:15px;
+}
+
+/* =========================
+BADGE
+========================= */
+
+.badge-topic{
+
+    background:
+    linear-gradient(
+    90deg,
+    #ff0055,
+    #ff7300);
+
+    color:#fff;
+
+    padding:8px 18px;
+
+    border-radius:30px;
+
+    font-weight:bold;
+
+    display:inline-block;
+
+    margin-bottom:10px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .tree-wrapper{
+        height:420px;
+    }
+
+    .summary-card{
+        min-height:500px;
+    }
+
+    .summary-content{
+        height:420px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <!-- TITLE -->
+
+    <div class="text-center mb-5">
+
+        <h1 class="main-title">
+            BT1 - TÓM TẮT 5 BÀI HỌC THI HS2
+        </h1>
+
+        <p class="text-muted mt-3">
+            Review kiến thức thiết kế đồ họa - Typography - Photoshop - Illustrator
+        </p>
+
+    </div>
+
+    <div class="row justify-content-center g-4">
+
+        <!-- TREE -->
+
+        <div class="col-lg-6">
+
+            <div class="tree-container-box">
+
+                <div class="tree-wrapper">
+
+                    <!-- CLICK APPLES -->
+
+                    <div class="fruit-item fruit-real pos-b1"
+                    onclick="toggleFruit(1,this,'#ff0055')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <div class="fruit-item fruit-real pos-b2"
+                    onclick="toggleFruit(2,this,'#00b4ff')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <div class="fruit-item fruit-real pos-b3"
+                    onclick="toggleFruit(3,this,'#ff7300')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <div class="fruit-item fruit-real pos-b4"
+                    onclick="toggleFruit(4,this,'#7000ff')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <div class="fruit-item fruit-real pos-b5"
+                    onclick="toggleFruit(5,this,'#ff00d4')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <!-- DECOR -->
+
+                    <div class="fruit-item fruit-fake pos-a1">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <div class="fruit-item fruit-fake pos-a2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png">
+                    </div>
+
+                    <div class="fruit-item fruit-fake pos-a3">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <div class="fruit-item fruit-fake pos-a4">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png">
+                    </div>
+
+                    <div class="fruit-item fruit-fake pos-a5">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <div class="fruit-item fruit-fake pos-a6">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                    <div class="fruit-item fruit-fake pos-a7">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415682.png">
+                    </div>
+
+                    <div class="fruit-item fruit-fake pos-a8">
+                        <img src="https://cdn-icons-png.flaticon.com/512/415/415733.png">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CONTENT -->
+
+        <div class="col-lg-5">
+
+            <div class="card summary-card p-4 h-100"
+            id="main-card">
+
+                <!-- PLACEHOLDER -->
+
+                <div id="placeholder-text"
+                class="text-center text-muted py-5">
+
+                    <i class="bi bi-book-half display-3 text-danger"></i>
+
+                    <p class="mt-3">
+                        Click vào từng trái táo để xem nội dung ôn tập chi tiết.
+                    </p>
+
+                </div>
+
+                <!-- BÀI 1 -->
+
+                <div id="summary1"
+                class="summary-content">
+
+                    <span class="badge-topic">
+                        <i class="bi bi-palette-fill"></i>
+                        Bài 1 - Nguyên lý thiết kế
+                    </span>
+
+                    <div class="lesson-title">
+                        Tổng quan Design Principles
+                    </div>
+
+                    <div class="lesson-sub">
+                        Những nguyên lý nền tảng trong thiết kế đồ họa
+                    </div>
+
+                    <ul>
+
+                        <li><strong>Balance:</strong> Cân bằng bố cục.</li>
+
+                        <li><strong>Contrast:</strong> Tạo điểm nhấn thị giác.</li>
+
+                        <li><strong>Hierarchy:</strong> Phân cấp nội dung.</li>
+
+                        <li><strong>Alignment:</strong> Căn chỉnh chuyên nghiệp.</li>
+
+                        <li><strong>White Space:</strong> Tạo khoảng thở cho thiết kế.</li>
+
+                        <li><strong>Repetition:</strong> Đồng nhất màu sắc và font.</li>
+
+                        <li><strong>Grid System:</strong> Hệ thống lưới bố cục.</li>
+
+                        <li><strong>Visual Flow:</strong> Điều hướng ánh nhìn.</li>
+
+                        <li><strong>Focus Point:</strong> Điểm tập trung chính.</li>
+
+                        <li><strong>Ứng dụng:</strong> Poster, social media, banner.</li>
+
+                    </ul>
+
+                </div>
+
+                <!-- BÀI 2 -->
+
+                <div id="summary2"
+                class="summary-content">
+
+                    <span class="badge-topic">
+                        <i class="bi bi-type"></i>
+                        Bài 2 - Typography
+                    </span>
+
+                    <div class="lesson-title">
+                        Nghệ thuật Typography
+                    </div>
+
+                    <div class="lesson-sub">
+                        Cách trình bày chữ trong thiết kế
+                    </div>
+
+                    <ul>
+
+                        <li><strong>Serif:</strong> Font có chân cổ điển.</li>
+
+                        <li><strong>Sans Serif:</strong> Font hiện đại.</li>
+
+                        <li><strong>Kerning:</strong> Khoảng cách ký tự.</li>
+
+                        <li><strong>Leading:</strong> Khoảng cách dòng.</li>
+
+                        <li><strong>Tracking:</strong> Khoảng cách đoạn văn.</li>
+
+                        <li><strong>Font Pairing:</strong> Kết hợp nhiều font.</li>
+
+                        <li><strong>Text Hierarchy:</strong> Phân cấp chữ.</li>
+
+                        <li><strong>Contrast Typography:</strong> Chữ đậm và mảnh.</li>
+
+                        <li><strong>Ứng dụng:</strong> Poster và logo.</li>
+
+                    </ul>
+
+                </div>
+
+                <!-- BÀI 3 -->
+
+                <div id="summary3"
+                class="summary-content">
+
+                    <span class="badge-topic">
+                        <i class="bi bi-image-fill"></i>
+                        Bài 3 - Photoshop
+                    </span>
+
+                    <div class="lesson-title">
+                        Chỉnh sửa ảnh chuyên nghiệp
+                    </div>
+
+                    <div class="lesson-sub">
+                        Công cụ quan trọng trong Photoshop
+                    </div>
+
+                    <ul>
+
+                        <li><strong>Layer:</strong> Quản lý đối tượng.</li>
+
+                        <li><strong>Mask:</strong> Ẩn hiện hình ảnh.</li>
+
+                        <li><strong>Blend Mode:</strong> Trộn màu layer.</li>
+
+                        <li><strong>Brush Tool:</strong> Vẽ texture.</li>
+
+                        <li><strong>Filter:</strong> Hiệu ứng đặc biệt.</li>
+
+                        <li><strong>Selection Tool:</strong> Chọn vùng ảnh.</li>
+
+                        <li><strong>Color Correction:</strong> Chỉnh màu.</li>
+
+                        <li><strong>Pen Tool:</strong> Cắt ảnh chính xác.</li>
+
+                        <li><strong>Ứng dụng:</strong> Banner và poster.</li>
+
+                    </ul>
+
+                </div>
+
+                <!-- BÀI 4 -->
+
+                <div id="summary4"
+                class="summary-content">
+
+                    <span class="badge-topic">
+                        <i class="bi bi-vector-pen"></i>
+                        Bài 4 - Illustrator
+                    </span>
+
+                    <div class="lesson-title">
+                        Thiết kế Vector
+                    </div>
+
+                    <div class="lesson-sub">
+                        Các kỹ năng Illustrator quan trọng
+                    </div>
+
+                    <ul>
+
+                        <li><strong>Pen Tool:</strong> Vẽ vector.</li>
+
+                        <li><strong>Shape Builder:</strong> Kết hợp hình.</li>
+
+                        <li><strong>Gradient:</strong> Chuyển màu.</li>
+
+                        <li><strong>Stroke:</strong> Chỉnh viền.</li>
+
+                        <li><strong>Fill:</strong> Màu nền.</li>
+
+                        <li><strong>Artboard:</strong> Quản lý nhiều khung.</li>
+
+                        <li><strong>Typography Vector:</strong> Chữ vector.</li>
+
+                        <li><strong>Ứng dụng:</strong> Logo và infographic.</li>
+
+                    </ul>
+
+                </div>
+
+                <!-- BÀI 5 -->
+
+                <div id="summary5"
+                class="summary-content">
+
+                    <span class="badge-topic">
+                        <i class="bi bi-trophy-fill"></i>
+                        Bài 5 - Poster Design
+                    </span>
+
+                    <div class="lesson-title">
+                        Tổng kết thiết kế Poster
+                    </div>
+
+                    <div class="lesson-sub">
+                        Kỹ năng cần thiết cho bài thi HS2
+                    </div>
+
+                    <ul>
+
+                        <li><strong>Typography:</strong> Tiêu đề nổi bật.</li>
+
+                        <li><strong>Color:</strong> Màu sắc hài hòa.</li>
+
+                        <li><strong>Focus Point:</strong> Điểm nhấn mạnh.</li>
+
+                        <li><strong>Layout:</strong> Bố cục rõ ràng.</li>
+
+                        <li><strong>Concept:</strong> Ý tưởng sáng tạo.</li>
+
+                        <li><strong>Image:</strong> Ảnh chất lượng cao.</li>
+
+                        <li><strong>Hierarchy:</strong> Phân cấp thông tin.</li>
+
+                        <li><strong>Shadow & Glow:</strong> Tăng chiều sâu.</li>
+
+                        <li><strong>Mục tiêu:</strong> Hoàn thành poster trong 90 phút.</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function toggleFruit(baiIndex,element,themeColor){
+
+    const isFallen =
+    element.classList.contains('is-fallen');
+
+    const mainCard =
+    document.getElementById('main-card');
+
+    document
+    .querySelectorAll('.summary-content')
+    .forEach(content=>{
+
+        content.style.display='none';
+
+    });
+
+    document
+    .getElementById('placeholder-text')
+    .style.display='none';
+
+    if(!isFallen){
+
+        document
+        .querySelectorAll('.fruit-real')
+        .forEach(item=>{
+
+            item.classList.remove('is-fallen');
+
+        });
+
+        element.classList.add('is-fallen');
+
+        document
+        .getElementById('summary'+baiIndex)
+        .style.display='block';
+
+        mainCard.style.borderLeftColor =
+        themeColor;
+
+    }else{
+
+        element.classList.remove('is-fallen');
+
+        document
+        .getElementById('placeholder-text')
+        .style.display='block';
+
+        mainCard.style.borderLeftColor =
+        '#ff0055';
+    }
+
+}
+
+</script>
+
+</body>
+</html>
